@@ -1,0 +1,142 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+#  main:
+#    allow-bean-definition-overriding: true
+
+#  datasource:
+#    url: jdbc:sqlserver://192.168.0.63:1433;DatabaseName=MyTiptop
+#    username: sa
+#    password: '*/123456'
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+
+  datasource:
+      druid:
+        type: com.alibaba.druid.pool.DruidDataSource
+        initialSize: 1
+        minIdle: 3
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 30000
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        filters: stat,wall,slf4j
+        # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        # 合并多个DruidDataSource的监控数据
+        #useGlobalDataSourceStat: true
+      sqlserver:
+        url: jdbc:sqlserver://192.168.0.63:1433;DatabaseName=MyTiptop
+        username: sa
+        password: '*/123456'
+        driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#        validationQuery: select 1
+        type: com.alibaba.druid.pool.DruidDataSource
+      supplier:
+        url: jdbc:oracle:thin:@192.168.0.63:1521:orcl
+        username: system
+        password: systemmanager
+        driverClassName: oracle.jdbc.driver.OracleDriver  #oracle.jdbc.OracleDriver
+#        validationQuery: select 1 from dual
+        type: com.alibaba.druid.pool.DruidDataSource
+
+
+#
+#datasource:
+#  druid:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    initialSize: 1
+#    minIdle: 3
+#    maxActive: 20
+#    maxWait: 60000
+#    timeBetweenEvictionRunsMillis: 60000
+#    minEvictableIdleTimeMillis: 30000
+#    testWhileIdle: true
+#    testOnBorrow: false
+#    testOnReturn: false
+#    poolPreparedStatements: true
+#    maxPoolPreparedStatementPerConnectionSize: 20
+#    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#    filters: stat,wall,slf4j
+#    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+#    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#    # 合并多个DruidDataSource的监控数据
+#    #useGlobalDataSourceStat: true
+#
+#  oracle:
+#    url: jdbc:oracle:thin:@192.168.0.63:1521:orcl
+#    username: system
+#    password: systemmanager
+#    driverClassName: oracle.jdbc.OracleDriver  #oracle.jdbc.driver.OracleDriver
+#    validationQuery: select 1 from dual
+#  sqlserver:
+#    url: jdbc:sqlserver://192.168.0.63:1433;DatabaseName=MyTiptop
+#    username: sa
+#    password: '*/123456'
+#    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    validationQuery: select 1
+
+
+
+
+#mybatis:
+##    typeAliasesPackage: cn.grand.demoboot.entity
+#    mapper-locations: classpath:cn/grand/demoboot/mapper/*.xml
+#    configuration:
+#         map-underscore-to-camel-case: true
+
+
+
+mybatis_db1:
+  # 映射文件的路径 ， 这个切换数据源的场景下不能配置 * 通配符，有多个 逗号隔开，继续跟 classpath:mapper_db1/XXX
+  # 在MybatisConfig.java#sqlSessionFactoryBean方法中通过sqlSessionFactoryBean设置classpath:mapper_db1/*.xml ,不然每次都要改这个地方，不好维护。
+  #  mapper-locations: classpath:mapper_db1/*.xml
+  # 类型别名包配置，只能指定具体的包，多个配置可以使用英文逗号隔开
+  # 也可以通过sqlSessionFactoryBean.setTypeAliasesPackage("com.artisan.domain.db1")
+  type-aliases-package: cn.grand.demoboot.entity.sqlserver
+  # Mybatis SQL语句控制台打印
+  configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+ # mybatis
+mybatis_db2:
+  # 映射文件的路径 ， 这个切换数据源的场景下不能配置 * 通配符，有多个 逗号隔开，继续跟 classpath:mapper/XXX
+  # 在MybatisDB2Config.java#sqlSessionFactoryBean方法中通过sqlSessionFactoryBean设置classpath:mapper_db2/*.xml ,不然每次都要改这个地方，不好维护。
+  #mapper-locations: classpath:mapper_db2/*.xml
+  # 类型别名包配置，只能指定具体的包，多个配置可以使用英文逗号隔开
+  type-aliases-package: cn.grand.demoboot.entity.supplier
+  # Mybatis SQL语句控制台打印
+  configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+pagehelper:
+    helperDialect: sqlserver
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+logging:
+  level:
+    cn.grand.demoboot.mapper: debug
+student:
+    name: forezp
+    age: 12
+#配置文件    api、文件保存地址
+apiconfig:
+    server: "http://192.168.0.63:9009/SupplierService/"
+    pdfDir: "D:/Barcode/PDF/"
+    excelDir: "D:/Barcode/Excel/"
+    signatureFileName: "D:/Barcode/Signature/PrintSignature.txt"
+    downloadDir: D:/Barcode/Download/
+
+

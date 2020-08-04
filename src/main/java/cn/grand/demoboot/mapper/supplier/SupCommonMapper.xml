@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.grand.demoboot.mapper.supplier.SupCommonMapper">
+
+  <!--执行原生sql语句 Select，返回LinkedHashMap-->
+  <select id="commonSelect" parameterType="String" resultType="java.util.LinkedHashMap">
+    ${value}
+  </select>
+
+  <select id="commonSelectInt" resultType="java.lang.Integer">
+    ${value}
+  </select>
+
+  <!--执行原生sql语句 Delete、update、insert，返回Integer parameterType="java.lang.Integer"-->
+  <delete id="commonSql" parameterType="java.lang.Integer">
+     ${value}
+  </delete>
+
+  <!--执行Sqlserver分页存储过程p_Paging_RowCount，返回 LinkedHashMap-->
+  <select id="Paging" statementType="CALLABLE" parameterType="java.util.Map" resultType="java.util.LinkedHashMap">
+    {
+    call  p_Paging_RowCount (
+    #{tableName,mode=IN,jdbcType=VARCHAR},
+    #{fields,mode=IN,jdbcType=VARCHAR},
+    #{orderField,mode=IN,jdbcType=VARCHAR},
+    #{sqlWhere,mode=IN,jdbcType=VARCHAR},
+    #{pageSize,mode=IN,jdbcType=INTEGER},
+    #{pageIndex,mode=IN,jdbcType=INTEGER},
+    #{totalPage,mode=OUT,jdbcType=INTEGER},
+    #{totalRecord,mode=OUT,jdbcType=INTEGER}
+    )
+    }
+  </select>
+
+
+</mapper>

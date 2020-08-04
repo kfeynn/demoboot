@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.grand.demoboot.mapper.sqlserver.XpGridUserMapperPlus">
+  <resultMap id="BaseResultMap" type="cn.grand.demoboot.entity.sqlserver.XpGridUser">
+    <id column="UserID" jdbcType="INTEGER" property="userid" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="UserCName" jdbcType="VARCHAR" property="usercname" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="Online" jdbcType="INTEGER" property="online" />
+    <result column="LastOnlineTime" jdbcType="INTEGER" property="lastonlinetime" />
+    <result column="AllOnlineTime" jdbcType="INTEGER" property="allonlinetime" />
+    <result column="LoginTimes" jdbcType="INTEGER" property="logintimes" />
+    <result column="CurrentLoginDateTime" jdbcType="TIMESTAMP" property="currentlogindatetime" />
+    <result column="LastOprtnDateTime" jdbcType="TIMESTAMP" property="lastoprtndatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UserID, UserName, UserCName, Password, deleted, Online, LastOnlineTime, AllOnlineTime, 
+    LoginTimes, CurrentLoginDateTime, LastOprtnDateTime
+  </sql>
+
+  <select id = "isExists"   resultType="integer" >
+  select
+  count(*)
+  from xpGrid_User
+  where  UserName = #{username,jdbcType=VARCHAR} and password= #{password,jdbcType=VARCHAR}
+  </select>
+
+  <select id = "selectByUserNameAndPassword"   resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from xpGrid_User
+    where  UserName = #{username,jdbcType=VARCHAR} and password= #{password,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

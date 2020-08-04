@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.grand.demoboot.mapper.sqlserver.XpGridFunctionsForPublicMapperPlus">
+  <resultMap id="BaseResultMap" type="cn.grand.demoboot.entity.sqlserver.XpGridFunctionsForPublic">
+    <id column="FuncCode" jdbcType="VARCHAR" property="funccode" />
+    <result column="FuncName" jdbcType="VARCHAR" property="funcname" />
+    <result column="FuncUrl" jdbcType="VARCHAR" property="funcurl" />
+    <result column="FuncParent" jdbcType="VARCHAR" property="funcparent" />
+    <result column="FuncImg" jdbcType="VARCHAR" property="funcimg" />
+    <result column="Enable" jdbcType="INTEGER" property="enable" />
+    <result column="DisplayOrder" jdbcType="INTEGER" property="displayorder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FuncCode, FuncName, FuncUrl, FuncParent, FuncImg, Enable, DisplayOrder
+  </sql>
+  <select id = "selectListByUserId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from xpGrid_FunctionsForPublic
+
+  </select>
+  <!--INTEGER 大小写需要注意。全大写！-->
+ </mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+
+    <dwr:annotation-config/>
+
+    <dwr:annotation-scan scanRemoteProxy="false" base-package="cn.grand.demodboot.controller"/>
+
+    <dwr:configuration/>
+</beans>
+
+<!--这个spring配置为了dwr插件。不要的话，可以删除-->
+<!--清单：DwrConfig.java\ DemoDwr.java \ demo.html \ applicatian:@ImportResource("classpath*:spring.xml")-->

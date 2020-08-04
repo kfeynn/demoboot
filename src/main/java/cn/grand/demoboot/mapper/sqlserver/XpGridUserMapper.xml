@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.grand.demoboot.mapper.sqlserver.XpGridUserMapper">
+  <resultMap id="BaseResultMap" type="cn.grand.demoboot.entity.sqlserver.XpGridUser">
+    <id column="UserID" jdbcType="INTEGER" property="userid" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="UserCName" jdbcType="VARCHAR" property="usercname" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="Online" jdbcType="INTEGER" property="online" />
+    <result column="LastOnlineTime" jdbcType="INTEGER" property="lastonlinetime" />
+    <result column="AllOnlineTime" jdbcType="INTEGER" property="allonlinetime" />
+    <result column="LoginTimes" jdbcType="INTEGER" property="logintimes" />
+    <result column="CurrentLoginDateTime" jdbcType="TIMESTAMP" property="currentlogindatetime" />
+    <result column="LastOprtnDateTime" jdbcType="TIMESTAMP" property="lastoprtndatetime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UserID, UserName, UserCName, Password, deleted, Online, LastOnlineTime, AllOnlineTime, 
+    LoginTimes, CurrentLoginDateTime, LastOprtnDateTime
+  </sql>
+  <select id="selectByExample" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from xpGrid_User
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xpGrid_User
+    where UserID = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xpGrid_User
+    where UserID = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUserExample">
+    delete from xpGrid_User
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUser">
+    insert into xpGrid_User ( UserName, UserCName,
+      Password, deleted, Online, 
+      LastOnlineTime, AllOnlineTime, LoginTimes, 
+      CurrentLoginDateTime, LastOprtnDateTime
+      )
+    values ( #{username,jdbcType=VARCHAR}, #{usercname,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER}, #{online,jdbcType=INTEGER}, 
+      #{lastonlinetime,jdbcType=INTEGER}, #{allonlinetime,jdbcType=INTEGER}, #{logintimes,jdbcType=INTEGER}, 
+      #{currentlogindatetime,jdbcType=TIMESTAMP}, #{lastoprtndatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUser">
+    insert into xpGrid_User
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        UserID,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="usercname != null">
+        UserCName,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="online != null">
+        Online,
+      </if>
+      <if test="lastonlinetime != null">
+        LastOnlineTime,
+      </if>
+      <if test="allonlinetime != null">
+        AllOnlineTime,
+      </if>
+      <if test="logintimes != null">
+        LoginTimes,
+      </if>
+      <if test="currentlogindatetime != null">
+        CurrentLoginDateTime,
+      </if>
+      <if test="lastoprtndatetime != null">
+        LastOprtnDateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usercname != null">
+        #{usercname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=INTEGER},
+      </if>
+      <if test="lastonlinetime != null">
+        #{lastonlinetime,jdbcType=INTEGER},
+      </if>
+      <if test="allonlinetime != null">
+        #{allonlinetime,jdbcType=INTEGER},
+      </if>
+      <if test="logintimes != null">
+        #{logintimes,jdbcType=INTEGER},
+      </if>
+      <if test="currentlogindatetime != null">
+        #{currentlogindatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastoprtndatetime != null">
+        #{lastoprtndatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUserExample" resultType="java.lang.Long">
+    select count(*) from xpGrid_User
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update xpGrid_User
+    <set>
+      <if test="record.userid != null">
+        UserID = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        UserName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercname != null">
+        UserCName = #{record.usercname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        Password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=INTEGER},
+      </if>
+      <if test="record.online != null">
+        Online = #{record.online,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastonlinetime != null">
+        LastOnlineTime = #{record.lastonlinetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.allonlinetime != null">
+        AllOnlineTime = #{record.allonlinetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.logintimes != null">
+        LoginTimes = #{record.logintimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentlogindatetime != null">
+        CurrentLoginDateTime = #{record.currentlogindatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastoprtndatetime != null">
+        LastOprtnDateTime = #{record.lastoprtndatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update xpGrid_User
+    set UserID = #{record.userid,jdbcType=INTEGER},
+      UserName = #{record.username,jdbcType=VARCHAR},
+      UserCName = #{record.usercname,jdbcType=VARCHAR},
+      Password = #{record.password,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=INTEGER},
+      Online = #{record.online,jdbcType=INTEGER},
+      LastOnlineTime = #{record.lastonlinetime,jdbcType=INTEGER},
+      AllOnlineTime = #{record.allonlinetime,jdbcType=INTEGER},
+      LoginTimes = #{record.logintimes,jdbcType=INTEGER},
+      CurrentLoginDateTime = #{record.currentlogindatetime,jdbcType=TIMESTAMP},
+      LastOprtnDateTime = #{record.lastoprtndatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUser">
+    update xpGrid_User
+    <set>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usercname != null">
+        UserCName = #{usercname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="online != null">
+        Online = #{online,jdbcType=INTEGER},
+      </if>
+      <if test="lastonlinetime != null">
+        LastOnlineTime = #{lastonlinetime,jdbcType=INTEGER},
+      </if>
+      <if test="allonlinetime != null">
+        AllOnlineTime = #{allonlinetime,jdbcType=INTEGER},
+      </if>
+      <if test="logintimes != null">
+        LoginTimes = #{logintimes,jdbcType=INTEGER},
+      </if>
+      <if test="currentlogindatetime != null">
+        CurrentLoginDateTime = #{currentlogindatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastoprtndatetime != null">
+        LastOprtnDateTime = #{lastoprtndatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridUser">
+    update xpGrid_User
+    set UserName = #{username,jdbcType=VARCHAR},
+      UserCName = #{usercname,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=INTEGER},
+      Online = #{online,jdbcType=INTEGER},
+      LastOnlineTime = #{lastonlinetime,jdbcType=INTEGER},
+      AllOnlineTime = #{allonlinetime,jdbcType=INTEGER},
+      LoginTimes = #{logintimes,jdbcType=INTEGER},
+      CurrentLoginDateTime = #{currentlogindatetime,jdbcType=TIMESTAMP},
+      LastOprtnDateTime = #{lastoprtndatetime,jdbcType=TIMESTAMP}
+    where UserID = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

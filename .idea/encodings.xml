@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/grand/demoboot/webservice/client/TiptopResponseUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/grand/demoboot/webservice/client/tiptoptest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/tw" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/tw/com/dsc/tiptop/tiptopservicegateway/CreateStockInDataResponseCreateStockInDataResponse.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/main/java/tw/com/dsc/tiptop/tiptopservicegateway/GetMFGDocumentRequestGetMFGDocumentRequest.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/main/java/tw/com/dsc/tiptop/tiptopservicegateway/GetTableAmendmentDataRequestGetTableAmendmentDataRequest.java" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/src/test/java/cn" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/cn/grand/demoboot/webservice/GetName.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/cn/grand/demoboot/webservice/GetUser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/cn/grand/demoboot/webserviceclient.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

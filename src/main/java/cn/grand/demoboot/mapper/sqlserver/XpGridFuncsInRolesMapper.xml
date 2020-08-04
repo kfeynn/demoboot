@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.grand.demoboot.mapper.sqlserver.XpGridFuncsInRolesMapper">
+  <resultMap id="BaseResultMap" type="cn.grand.demoboot.entity.sqlserver.XpGridFuncsInRoles">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="RoleId" jdbcType="INTEGER" property="roleid" />
+    <result column="FuncCode" jdbcType="VARCHAR" property="funccode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, RoleId, FuncCode
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xpGrid_FuncsInRoles
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from xpGrid_FuncsInRoles
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridFuncsInRoles">
+    insert into xpGrid_FuncsInRoles (ID, RoleId, FuncCode
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{funccode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridFuncsInRoles">
+    insert into xpGrid_FuncsInRoles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="roleid != null">
+        RoleId,
+      </if>
+      <if test="funccode != null">
+        FuncCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="funccode != null">
+        #{funccode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridFuncsInRoles">
+    update xpGrid_FuncsInRoles
+    <set>
+      <if test="roleid != null">
+        RoleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="funccode != null">
+        FuncCode = #{funccode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.grand.demoboot.entity.sqlserver.XpGridFuncsInRoles">
+    update xpGrid_FuncsInRoles
+    set RoleId = #{roleid,jdbcType=INTEGER},
+      FuncCode = #{funccode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
